@@ -10,7 +10,7 @@ docker run --gpus all --name vllm_qwen35_serve_20260323 \
         --served-model-name Qwen \
         --max_model_len 40960 \
         --max-num-seqs 16 \
-        --api-key gass-wlw-ai110 \
+        --api-key MYKEY \
         --gpu-memory-utilization 0.7 \
         --host 0.0.0.0 \
         --port 8888 \

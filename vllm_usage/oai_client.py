@@ -2,9 +2,13 @@ from openai import OpenAI
 
 # 初始化客户端，指向本地 vLLM 服务
 client = OpenAI(
-    api_key="gass-wlw-ai110",  # vLLM 不验证密钥，可随意填写
+    api_key="MYKEY",  # vLLM 不验证密钥，可随意填写
     base_url="http://0.0.0.0:8888/v1"
 )
+
+import time
+
+start_time = time.perf_counter()  # 使用更高精度的计时器
 
 # 发送聊天请求
 response = client.chat.completions.create(
@@ -17,5 +21,11 @@ response = client.chat.completions.create(
     max_tokens=512
 )
 
-# 输出响应内容
-print(response.choices[0].message.content)
+end_time = time.perf_counter()
+
+print(f"time cost: {end_time - start_time:.2f} seconds")
+print("Chat response:", chat_response)
+
+# vllm 0.18, dgx spark, no thinking
+### qwen3.5-27B-fp8, avg 11s, first inference: 69s
+### qwen3.5-35B-a3b, avg 1.8s, first inference: 72s
