@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.so
+*.egg-info/
+*.egg
+dist/
+build/
+
+# Dependencies (install via pip, don't vendor)
+.deps/
+.venv/
+
+# Environment / secrets
+.env
+.env.*
+*.log
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Claude local data
+.claude/

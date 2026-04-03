@@ -1,0 +1,82 @@
+{
+    "models": {
+        "paraformer-large": {
+            "name": "Paraformer Large",
+            "engine": "funasr",
+            "description": "高精度中文语音识别模型（内置VAD+标点+时间戳）",
+            "languages": [
+                "zh"
+            ],
+            "default": false,
+            "supports_realtime": true,
+            "models": {
+                "offline": "iic/speech_paraformer-large-vad-punc_asr_nat-zh-cn-16k-common-vocab8404-pytorch",
+                "realtime": "iic/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-online"
+            }
+        },
+        "qwen3-asr-1.7b": {
+            "name": "Qwen3-ASR-1.7B",
+            "engine": "qwen3",
+            "description": "Qwen3-ASR 1.7B，支持52种语言和方言，vLLM后端高性能推理，字级时间戳",
+            "languages": [
+                "zh",
+                "en",
+                "yue",
+                "ja",
+                "ko",
+                "ar",
+                "de",
+                "es",
+                "fr",
+                "pt",
+                "id",
+                "it",
+                "ru",
+                "th",
+                "vi"
+            ],
+            "default": true,
+            "supports_realtime": true,
+            "models": {
+                "offline": "Qwen/Qwen3-ASR-1.7B"
+            },
+            "extra_kwargs": {
+                "max_model_len": 16384,
+                "forced_aligner_path": "Qwen/Qwen3-ForcedAligner-0.6B",
+                "max_inference_batch_size": 32
+            }
+        },
+        "qwen3-asr-0.6b": {
+            "name": "Qwen3-ASR-0.6B",
+            "engine": "qwen3",
+            "description": "Qwen3-ASR 0.6B，轻量版支持52种语言和方言，vLLM后端高性能推理，字级时间戳，适合小显存环境",
+            "languages": [
+                "zh",
+                "en",
+                "yue",
+                "ja",
+                "ko",
+                "ar",
+                "de",
+                "es",
+                "fr",
+                "pt",
+                "id",
+                "it",
+                "ru",
+                "th",
+                "vi"
+            ],
+            "default": false,
+            "supports_realtime": true,
+            "models": {
+                "offline": "Qwen/Qwen3-ASR-0.6B"
+            },
+            "extra_kwargs": {
+                "max_model_len": 16384,
+                "forced_aligner_path": "Qwen/Qwen3-ForcedAligner-0.6B",
+                "max_inference_batch_size": 32
+            }
+        }
+    }
+}

@@ -1,0 +1,14 @@
+[
+  "01-agent-loop",
+  "02-tool-sandbox",
+  "03-sub-agent",
+  "04-task-graph",
+  "05-system-prompt",
+  "06-context-compression",
+  "07-memory",
+  "08-background-task",
+  "09-skill-mcp",
+  "10-buddy-companion",
+  "11-team-swarm",
+  "12-ink-render-engine"
+]

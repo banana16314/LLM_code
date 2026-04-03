@@ -1,0 +1,11 @@
+[
+  {
+    "text": "深入学习",
+    "link": "/guide/01-agent-loop",
+    "activeMatch": "/guide/"
+  },
+  {
+    "text": "GitHub",
+    "link": "https://github.com/Janlaywss/cloud-code-study"
+  }
+]
