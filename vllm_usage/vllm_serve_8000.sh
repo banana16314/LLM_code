@@ -1,28 +1,22 @@
-#!/bin/bash
-# 手动进入容器里面，启动vllm服务
+docker rm -f v_qwen36 || true
 
-# 启动 vLLM 服务
-# vllm serve /mllm/model/Qwen/Qwen3.5-27B-FP8 \
-#     --max_model_len 40960 \
-#     --served-model-name Qwen \
-#     --gpu_memory_utilization 0.9 \
-#     --max_num_seqs 1024 \
-#     --host 0.0.0.0 \
-#     --port 8000 \
-#     --trust_remote_code 
+docker run --gpus all --name v_qwen36 \
+    -v /home/deep/hcq/model:/home/deep/hcq/model \
+    -e CUDA_VISIBLE_DEVICES=0 \
+    --net=host \
+    --restart=always \
+    -d \
+    --entrypoint /usr/bin/python3 \
+    docker.1ms.run/vllm/vllm-openai:v0.19.1-cu130-ubuntu2404 \
+    -m vllm.entrypoints.openai.api_server \
+        --model /home/deep/hcq/model/Qwen/Qwen3.6-35BA3B-FP8 \
+        --served-model-name Qwen \
+        --max_model_len 163840 \
+        --max-num-seqs 128 \
+        --gpu-memory-utilization 0.8 \
+        --host 0.0.0.0 \
+        --port 8000 \
+        --enable-auto-tool-choice \
+        --tool-call-parser qwen3_coder \
+        --trust-remote-code
 
-VLLM_ALLOW_LONG_MAX_MODEL_LEN=1 vllm serve /mllm/model/Qwen/Qwen3.5-27B-FP8 \
-  --max-model-len 1010000 \
-  --served-model-name Qwen \
-  --host 0.0.0.0 \
-  --port 8000 \
-  --hf-overrides '{"text_config": {"rope_parameters": {
-    "mrope_interleaved": true,
-    "mrope_section": [11, 11, 10],
-    "rope_type": "yarn",
-    "rope_theta": 10000000,
-    "partial_rotary_factor": 0.25,
-    "factor": 4.0,
-    "original_max_position_embeddings": 262144
-  }}}'
-# 
