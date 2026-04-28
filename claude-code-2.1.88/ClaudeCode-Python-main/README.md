@@ -8,6 +8,8 @@
 
 修改了接口，从anthropic 到openai的接口。
 
+增加了CLAUDE.md，里面自动触发.claude/skills/的技能。
+
 ## 这是什么
 
 CC 是 Anthropic 官方的 AI 编程 CLI，它的本质是一个 **tool-use agent loop**：模型读代码、改文件、跑命令、自主决策，循环往复直到任务完成。
